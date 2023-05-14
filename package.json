@@ -21,18 +21,21 @@
     "url": "https://github.com/klientjs/open-stack-cli.git",
     "type": "git"
   },
+  "bin": {
+    "open-stack": "dist/cjs/cli.js"
+  },
   "scripts": {
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "prettier": "prettier src tests --check",
     "prettier:fix": "prettier src tests -l --write",
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --runInBand",
     "dist": "rm -rf dist/* && tsc && tsc --module esnext --outDir dist/esm --moduleResolution node",
     "pre-commit": "npm run lint:fix && npm run prettier:fix && npm test",
     "check": "npm run prettier && npm run lint && npm test",
     "update:dependencies": "npm-check-updates --doctorTest \"npm test && npm run dist\"",
-    "update:open-stack": "open-stack update",
-    "coverage:badge": "open-stack badge --output .github/badges/coverage.svg",
+    "update:open-stack": "node dist/cjs/cli.js update",
+    "coverage:badge": "node dist/cjs/cli.js badge --output .github/badges/coverage.svg",
     "coverage:open": "open coverage/lcov-report/index.html",
     "prepare": "npm run prepare:husky",
     "prepare:husky": "rm -rf .husky && mkdir -p .husky && npm run prepare:pre-commit && npm run prepare:commit-msg && husky install",
@@ -40,13 +43,20 @@
     "prepare:commit-msg": "husky add .husky/commit-msg 'npx --no -- commitlint --edit ${1}'",
     "release": "release-it"
   },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "deepmerge": "^4.3.1",
+    "glob": "^10.2.2",
+    "prompts": "^2.4.2",
+    "yargs": "^17.7.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "~17.6.1",
     "@commitlint/config-conventional": "~17.6.1",
-    "@klient/open-stack-cli": "latest",
     "@release-it/conventional-changelog": "~5.1.1",
     "@types/jest": "~27.4.1",
     "@types/node": "~17.0.43",
+    "@types/prompts": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "~5.59.0",
     "@typescript-eslint/parser": "~5.59.0",
     "auto-changelog": "~2.4.0",
