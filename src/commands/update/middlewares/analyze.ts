@@ -6,19 +6,19 @@ import { globSync } from 'glob';
 import type { Context, Pkg } from '../context';
 
 const compare = (prev?: string, curr?: string, next?: string) => {
-  if (curr === next) {
+  if (prev === next || curr === next) {
     return 'SKIPPED';
   }
 
-  if (prev !== next && prev !== curr) {
+  if (curr !== prev) {
     return 'CONFLICT';
   }
 
-  if (!prev && !curr && next) {
+  if (!prev && next) {
     return 'ADDED';
   }
 
-  if (prev && !next && curr) {
+  if (prev && !next) {
     return 'REMOVED';
   }
 
