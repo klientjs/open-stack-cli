@@ -10,6 +10,18 @@ import {
   outputVerboseRed
 } from './ouput';
 
+jest.useRealTimers();
+jest.setTimeout(10000);
+
+const sleep = (t = 300) =>
+  new Promise((r) => {
+    setTimeout(r, t);
+  });
+
+beforeEach(async () => {
+  await sleep();
+});
+
 test('badge:verbose', async () => {
   createCoverageSummary();
 

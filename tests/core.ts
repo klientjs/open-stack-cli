@@ -8,6 +8,7 @@ const createExitMock = () =>
     code = exitCode;
     return undefined as never;
   });
+
 beforeEach(() => {
   // Remove all cached modules. The cache needs to be cleared before running
   // each command, otherwise you will see the same results from the command

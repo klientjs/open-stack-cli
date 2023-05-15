@@ -1,4 +1,4 @@
-import { tmpRootDir } from './fixtures';
+import { projectDir, tmpRootDir } from './fixtures';
 
 export const outputWrite = `[step] | Move to target dir
 [step] | Check requirements
@@ -222,9 +222,9 @@ export const outputDryFullConflict = `[step] | Move to target dir
 [pass] | Successfully updated (0.0.0 -> 0.0.1)`;
 
 export const outputVerboseDry = `[step] | Move to target dir
-[info] | Moved to ${tmpRootDir}/open-stack-cli/curr
+[info] | Moved to ${projectDir}
 [step] | Check requirements
-[info] | Open-stack v0.0.0 detected
+[info] | Update from 0.0.0 open-stack version
 [step] | Initialize environment
 [info] | Prepare temporary folder
 [info] | Remove ${tmpRootDir}/open-stack-cli
@@ -340,7 +340,7 @@ export const outputInvalidTag = `[step] | Move to target dir
 [step] | Check requirements
 [step] | Initialize environment
 [step] | Clone open-stack versions
-[fail] | Unable to clone https://github.com/klientjs/open-stack.git with tag latest`;
+[fail] | Unable to clone https://github.com/klientjs/open-stack.git with tag 0.0.0`;
 
 export const outputInvalidConfig = `[step] | Move to target dir
 [step] | Check requirements

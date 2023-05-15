@@ -27,7 +27,7 @@ export default (context: Context) => {
     );
   }
 
-  logger.info(`Open-stack v${version} detected`, 2);
+  logger.info(`Update from ${version} open-stack version`, 2);
   inputs.from = version;
 
   logger.step('Initialize environment');

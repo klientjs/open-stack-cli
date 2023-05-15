@@ -3,7 +3,7 @@ import * as child_process from 'child_process';
 import * as os from 'os';
 import * as fs from 'fs';
 import { runCommand, fakeBuffer } from '../../core';
-import { createFixtures, tmpRootDir, tmpDir, fixturesNoChanges, fixtures, fixturesFullConflict } from './fixtures';
+import { createFixtures, tmpRootDir, projectDir, fixturesNoChanges, fixtures, fixturesFullConflict } from './fixtures';
 import {
   outputVerboseDry,
   outputDry,
@@ -14,8 +14,6 @@ import {
 } from './ouput';
 
 let currentFixtures = fixtures;
-
-const rootDir = path.join(tmpDir, 'curr');
 
 beforeEach(() => {
   createFixtures();
@@ -45,21 +43,21 @@ beforeEach(() => {
 });
 
 test('update:dry', async () => {
-  const { code, output } = await runCommand('update', rootDir, '--files', '*.txt', '--raw', '--dry');
+  const { code, output } = await runCommand('update', projectDir, '--files', '*.txt', '--raw', '--dry');
 
   expect(output).toBe(outputDry);
   expect(code).toBe(0);
 });
 
 test('update:dry:silent', async () => {
-  const { code, output } = await runCommand('update', rootDir, '--files', '*.txt', '--dry', '--silent');
+  const { code, output } = await runCommand('update', projectDir, '--files', '*.txt', '--dry', '--silent');
 
   expect(output).toBe('');
   expect(code).toBe(0);
 });
 
 test('update:dry:verbose', async () => {
-  const { code, output } = await runCommand('update', rootDir, '--files', '*.txt', '--raw', '--verbose', '--dry');
+  const { code, output } = await runCommand('update', projectDir, '--files', '*.txt', '--raw', '--verbose', '--dry');
 
   expect(output).toBe(outputVerboseDry);
   expect(code).toBe(0);
@@ -69,7 +67,7 @@ test('update:report:md', async () => {
   const report = path.join(tmpRootDir, 'open-stack-cli-report.md');
   const { code, output } = await runCommand(
     'update',
-    rootDir,
+    projectDir,
     '--files',
     '*.txt',
     '--raw',
@@ -87,7 +85,7 @@ test('update:report:json', async () => {
   const report = path.join(tmpRootDir, 'open-stack-cli-report.json');
   const { code, output } = await runCommand(
     'update',
-    rootDir,
+    projectDir,
     '--files',
     '*.txt',
     '--raw',
@@ -107,7 +105,7 @@ test('update:no-changes', async () => {
   createFixtures(fixturesNoChanges);
 
   const report = path.join(tmpRootDir, 'open-stack-cli-report.md');
-  const { code, output } = await runCommand('update', rootDir, '--files', '*.txt', '--raw', '--report', report);
+  const { code, output } = await runCommand('update', projectDir, '--files', '*.txt', '--raw', '--report', report);
 
   expect(output).toBe(outputNoChanges);
   expect(code).toBe(0);
@@ -116,14 +114,14 @@ test('update:no-changes', async () => {
 });
 
 test('update', async () => {
-  const { code, output } = await runCommand('update', rootDir, '--files', '*.txt', '--raw');
+  const { code, output } = await runCommand('update', projectDir, '--files', '*.txt', '--raw');
 
   expect(output).toBe(outputWrite);
   expect(code).toBe(0);
 });
 
 test('update:local', async () => {
-  expect((await runCommand('update', rootDir, '--dry', '--silent')).code).toBe(0);
+  expect((await runCommand('update', projectDir, '--dry', '--silent')).code).toBe(0);
 });
 
 test('update:conflict', async () => {
@@ -131,7 +129,7 @@ test('update:conflict', async () => {
 
   createFixtures(fixturesFullConflict);
 
-  const { code, output } = await runCommand('update', rootDir, '--files', '*.txt', '--dry', '--raw');
+  const { code, output } = await runCommand('update', projectDir, '--files', '*.txt', '--dry', '--raw');
 
   expect(output).toBe(outputDryFullConflict);
   expect(code).toBe(0);

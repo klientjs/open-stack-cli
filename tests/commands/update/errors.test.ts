@@ -1,11 +1,9 @@
-import * as path from 'path';
 import * as os from 'os';
 import { execSync } from 'child_process';
 import { runCommand } from '../../core';
-import { createFixtures, tmpRootDir, tmpDir } from './fixtures';
+import { moveTo } from '../../../src/core/process';
+import { createFixtures, tmpRootDir, projectDir } from './fixtures';
 import { outputInvalidRepo, outputInvalidConfig, outputInvalidTag } from './ouput';
-
-const rootDir = path.join(tmpDir, 'curr');
 
 beforeEach(() => {
   createFixtures();
@@ -14,16 +12,26 @@ beforeEach(() => {
 });
 
 test('update:invalid:version', async () => {
-  process.chdir(rootDir);
+  const backToPreviousDir = moveTo(projectDir);
   execSync('npm pkg delete open-stack');
-  const { code, output } = await runCommand('update', rootDir, '--files', '*.txt', '--raw');
+  backToPreviousDir();
+
+  const { code, output } = await runCommand('update', projectDir, '--files', '*.txt', '--raw');
 
   expect(output).toBe(outputInvalidConfig);
   expect(code).toBe(1);
 });
 
 test('update:invalid:repo', async () => {
-  const { code, output } = await runCommand('update', rootDir, '--repository', 'invalid', '--files', '*.txt', '--raw');
+  const { code, output } = await runCommand(
+    'update',
+    projectDir,
+    '--repository',
+    'invalid',
+    '--files',
+    '*.txt',
+    '--raw'
+  );
 
   expect(output).toBe(outputInvalidRepo);
   expect(code).toBe(1);
@@ -32,7 +40,7 @@ test('update:invalid:repo', async () => {
 test('update:invalid:tag', async () => {
   const { code, output } = await runCommand(
     'update',
-    rootDir,
+    projectDir,
     '--from',
     'latest',
     '--to',

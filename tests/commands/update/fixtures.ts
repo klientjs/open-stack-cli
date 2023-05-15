@@ -79,23 +79,24 @@ const next = {
 
 export const tmpRootDir = os.tmpdir();
 export const tmpDir = path.join(tmpRootDir, 'open-stack-cli');
+export const projectDir = path.join(tmpRootDir, 'open-stack-project');
 
 type Fixtures = { [_key: string]: Record<string, string> };
 
 export const fixtures: Fixtures = {
-  [path.join(tmpDir, 'curr')]: curr,
+  [projectDir]: curr,
   [path.join(tmpDir, 'prev')]: prev,
   [path.join(tmpDir, 'next')]: next
 };
 
 export const fixturesNoChanges: Fixtures = {
-  [path.join(tmpDir, 'curr')]: prev,
+  [projectDir]: prev,
   [path.join(tmpDir, 'prev')]: prev,
   [path.join(tmpDir, 'next')]: prev
 };
 
 export const fixturesFullConflict: Fixtures = {
-  [path.join(tmpDir, 'curr')]: {
+  [projectDir]: {
     'package.json': prettyJson({
       'open-stack': {
         version: '0.0.0'
@@ -134,6 +135,7 @@ export const fixturesFullConflict: Fixtures = {
 
 export function createFixtures(f = fixtures) {
   fs.rmSync(tmpDir, { recursive: true, force: true });
+  fs.rmSync(projectDir, { recursive: true, force: true });
 
   Object.keys(f).forEach((dir: string) => {
     fs.mkdirSync(dir, { recursive: true });

@@ -2,29 +2,23 @@ import { execSync } from 'child_process';
 import { moveTo } from './process';
 
 const cloneLatestVersion = (repository: string, dir: string): string => {
-  let version = 'latest';
-
-  try {
-    // Move to latest tag defined on main branch
-    execSync(`git clone --quiet ${repository} ${dir}`);
-    const backToPreviousDir = moveTo(dir);
-    execSync('git fetch --tags -f');
-    version = execSync('git describe --tags --abbrev=0').toString().replace('\n', '');
-    execSync(`git -c advice.detachedHead=false checkout ${version} --quiet`);
-    backToPreviousDir();
-  } catch (e) {
-    throw new Error(`Unable to clone ${repository} with tag ${version}\n`);
-  }
+  // Move to latest tag created on main branch
+  execSync(`git clone --quiet ${repository} ${dir}`);
+  const backToPreviousDir = moveTo(dir);
+  execSync('git fetch --tags -f');
+  const version = execSync('git describe --tags --abbrev=0').toString().replace('\n', '');
+  execSync(`git -c advice.detachedHead=false checkout ${version} --quiet`);
+  backToPreviousDir();
 
   return version;
 };
 
 export const cloneRepository = (repository: string, tag: string, dir: string) => {
-  if (tag === 'latest') {
-    return cloneLatestVersion(repository, dir);
-  }
-
   try {
+    if (tag === 'latest') {
+      return cloneLatestVersion(repository, dir);
+    }
+
     execSync(`git -c advice.detachedHead=false clone --quiet --depth=1 --branch ${tag} ${repository} ${dir}`);
   } catch (e) {
     throw new Error(`Unable to clone ${repository} with tag ${tag}\n`);
