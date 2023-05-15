@@ -2,7 +2,7 @@ import * as os from 'os';
 import * as path from 'path';
 import { defaultInputs } from '../../core/context';
 export const tmpRootDir = path.join(os.tmpdir(), 'open-stack-cli');
-const defaults = Object.assign(Object.assign({}, defaultInputs), { to: 'latest', from: '', report: '', dir: '.', repository: 'git@github.com:klientjs/open-stack', dry: false, files: [
+const defaults = Object.assign(Object.assign({}, defaultInputs), { to: 'latest', from: '', report: '', dir: '.', repository: 'https://github.com/klientjs/open-stack.git', dry: false, files: [
         '.github/ISSUE_TEMPLATE/*',
         '.github/workflows/*',
         '.github/PULL_REQUEST_TEMPLATE.md',

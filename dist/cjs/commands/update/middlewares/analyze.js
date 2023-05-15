@@ -15,16 +15,16 @@ const fs = require("fs");
 const path = require("path");
 const glob_1 = require("glob");
 const compare = (prev, curr, next) => {
-    if (curr === next) {
+    if (prev === next || curr === next) {
         return 'SKIPPED';
     }
-    if (prev !== next && prev !== curr) {
+    if (curr !== prev) {
         return 'CONFLICT';
     }
-    if (!prev && !curr && next) {
+    if (!prev && next) {
         return 'ADDED';
     }
-    if (prev && !next && curr) {
+    if (prev && !next) {
         return 'REMOVED';
     }
     return 'UPDATED';

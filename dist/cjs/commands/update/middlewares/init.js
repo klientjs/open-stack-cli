@@ -18,7 +18,7 @@ exports.default = (context) => {
     if (!version) {
         throw new Error('Unable to detect open-stack version your are using. Please set it in package.json or with --from option.');
     }
-    logger.info(`Open-stack v${version} detected`, 2);
+    logger.info(`Update from ${version} open-stack version`, 2);
     inputs.from = version;
     logger.step('Initialize environment');
     logger.info('Prepare temporary folder', 2);
