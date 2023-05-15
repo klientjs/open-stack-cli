@@ -25,7 +25,7 @@ beforeEach(() => {
   const execSync = jest.spyOn(child_process, 'execSync').mockImplementation((command: string) => {
     if (/(git)/g.test(command)) {
       if (command === 'git remote get-url origin') {
-        return fakeBuffer('https://github.com/klientjs/test') as string;
+        return fakeBuffer('git@github.com:klientjs/test') as string;
       }
 
       if (command === 'git rev-parse --abbrev-ref HEAD') {

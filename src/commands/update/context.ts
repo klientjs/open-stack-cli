@@ -52,7 +52,7 @@ const defaults: Inputs = {
   from: '',
   report: '',
   dir: '.',
-  repository: 'git@github.com:klientjs/open-stack',
+  repository: 'https://github.com/klientjs/open-stack.git',
   dry: false,
   files: [
     '.github/ISSUE_TEMPLATE/*',

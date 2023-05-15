@@ -230,7 +230,7 @@ export const outputVerboseDry = `[step] | Move to target dir
 [info] | Remove ${tmpRootDir}/open-stack-cli
 [info] | Create ${tmpRootDir}/open-stack-cli
 [step] | Clone open-stack versions
-[info] | Using git@github.com:klientjs/open-stack
+[info] | Using https://github.com/klientjs/open-stack.git
 [info] | Prev 0.0.0
 [info] | Next 0.0.1
 [step] | Analyze project
@@ -340,7 +340,7 @@ export const outputInvalidTag = `[step] | Move to target dir
 [step] | Check requirements
 [step] | Initialize environment
 [step] | Clone open-stack versions
-[fail] | Unable to clone git@github.com:klientjs/open-stack with tag latest`;
+[fail] | Unable to clone https://github.com/klientjs/open-stack.git with tag latest`;
 
 export const outputInvalidConfig = `[step] | Move to target dir
 [step] | Check requirements
