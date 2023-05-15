@@ -1,13 +1,17 @@
 import { execSync } from 'child_process';
+import { moveTo } from './process';
 
 const cloneLatestVersion = (repository: string, dir: string): string => {
   let version = 'latest';
 
   try {
     // Move to latest tag defined on main branch
-    execSync(`git clone --quiet ${repository} ${dir} && cd ${dir} && git fetch --tags -f`);
-    version = execSync(`cd ${dir} && git describe --tags --abbrev=0`).toString().replace('\n', '');
-    execSync(`cd ${dir} && git -c advice.detachedHead=false checkout ${version} --quiet`);
+    execSync(`git clone --quiet ${repository} ${dir}`);
+    const backToPreviousDir = moveTo(dir);
+    execSync('git fetch --tags -f');
+    version = execSync('git describe --tags --abbrev=0').toString().replace('\n', '');
+    execSync(`git -c advice.detachedHead=false checkout ${version} --quiet`);
+    backToPreviousDir();
   } catch (e) {
     throw new Error(`Unable to clone ${repository} with tag ${version}\n`);
   }
