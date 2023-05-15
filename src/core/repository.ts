@@ -32,7 +32,7 @@ export const sourceRepositoryToUrl = (repo?: string) => {
 
   return origin.indexOf('http') !== 0
     ? `https://github.com/${origin.split('@github.com:')[1].replace('.git', '')}`
-    : origin;
+    : origin.replace('.git', '');
 };
 
 export const getCurrentBranchName = () => execSync('git rev-parse --abbrev-ref HEAD').toString().replace('\n', '');
