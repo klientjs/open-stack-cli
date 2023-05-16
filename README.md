@@ -7,6 +7,7 @@
 - [Usage](#usage)
 - [Common options](#common-options)
 - [Commands](#commands)
+  * [Create](#create)
   * [Configure](#configure)
   * [Badge](#badge)
   * [Update](#update)
@@ -45,6 +46,25 @@ $ npx open-stack [command] <options>
 - `--silent` : disable output
 
 ## Commands
+
+### Create
+
+*This command must be run with open-stack bin installed globally*
+
+This command is useful to create a new project based on open-stack template. It will clone stack repository on specified version (latest by default), it will launch "configure" command and create commits for every initialization step. By using this command, you just need to create an empty repository in github and launch "git push" after create command.
+
+```bash
+$ npm install -g @klient/open-stack-cli
+
+$ open-stack create path/to/dir --version latest --verbose
+# "npm run configure" will be run and will ask you
+# few question for configurating your project
+
+$ cd path/to/dir            # Move to fresh created dir
+$ git log                   # See created commits
+$ git remote get-url origin # Verify the remote before push
+$ git push                  # Push project !
+```
 
 ### Configure
 

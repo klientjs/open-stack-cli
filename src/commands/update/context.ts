@@ -1,6 +1,7 @@
 import * as os from 'os';
 import * as path from 'path';
 
+import config from '../../core/config';
 import { defaultInputs } from '../../core/context';
 
 import type { Context as BaseContext, Inputs as BaseInputs } from '../../core/context';
@@ -52,7 +53,7 @@ const defaults: Inputs = {
   from: '',
   report: '',
   dir: '.',
-  repository: 'https://github.com/klientjs/open-stack.git',
+  repository: config.repository,
   dry: false,
   files: [
     '.github/ISSUE_TEMPLATE/*',

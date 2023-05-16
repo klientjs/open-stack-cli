@@ -9,7 +9,7 @@ const ansiRegex = [
 export default class Logger {
   constructor(private verbosity = 1, private colors = false) {}
 
-  write(x: string, minVerbosity: number) {
+  write(x: string, minVerbosity = 1) {
     if (this.verbosity > 0 && this.verbosity >= minVerbosity) {
       let output = x;
 
@@ -47,5 +47,13 @@ export default class Logger {
 
   infoSubTitle(x: string, mv = 1) {
     return this.write(chalk.dim(`[info] | ${chalk.underline(x)}`), mv);
+  }
+
+  divide() {
+    const style = chalk.cyan.bold;
+
+    this.write(style('       |'));
+    this.write(style('====== |'));
+    this.write(style('       |'));
   }
 }

@@ -4,6 +4,7 @@ import { hideBin } from 'yargs/helpers';
 import Logger from './core/logger';
 import execute from './core/command';
 
+import create from './commands/create';
 import configure from './commands/configure';
 import update from './commands/update';
 import badge from './commands/badge';
@@ -15,15 +16,17 @@ export default yargs(hideBin(process.argv))
   })
 
   // <--- CREATE --->
-  // .command(
-  //   'create [directory]',
-  //   'Create open-stack project',
-  //   (y) =>
-  //     y
-  //       .positional('directory', { describe: 'Target directory', default: '.' })
-  //       .option('version', { type: 'string', description: 'Current open-stack version' }),
-  //   (args) => console.log(args)
-  // )
+  .command(
+    'create [dir]',
+    'Create open-stack project',
+    (y) =>
+      y
+        .version(false)
+        .positional('dir', { describe: 'Target directory', default: '.' })
+        .option('repository', { type: 'string', description: 'Open-stack repository URL' })
+        .option('version', { type: 'string', description: 'Current open-stack version', default: 'latest' }),
+    (args) => execute(create, args)
+  )
 
   // <--- CREATE --->
   .command(

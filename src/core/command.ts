@@ -12,7 +12,7 @@ export type Command<T extends Context = Context> = {
   postProcess?: Middleware<T>[];
 };
 
-export default async function execute<T extends Context = Context>(command: Command<T>, args: Args) {
+export default async function execute<T extends Context = Context>(command: Command<T>, args: Args, allowExit = true) {
   let code = 0;
   let promise: Promise<unknown> | void;
 
@@ -41,5 +41,7 @@ export default async function execute<T extends Context = Context>(command: Comm
 
   resetCwd();
 
-  process.exit(code);
+  if (allowExit) {
+    process.exit(code);
+  }
 }

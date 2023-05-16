@@ -10,6 +10,11 @@ test('help', async () => {
   expect(code).toBe(0);
 });
 
+test('create:help', async () => {
+  const { code } = await runCommand('create', '--help');
+  expect(code).toBe(0);
+});
+
 test('update:help', async () => {
   const { code } = await runCommand('update', '--help');
   expect(code).toBe(0);

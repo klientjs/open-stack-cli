@@ -35,4 +35,13 @@ export const sourceRepositoryToUrl = (repo?: string) => {
     : origin.replace('.git', '');
 };
 
+export const httpToSshOriginUrl = (repo: string) => {
+  const url = new URL(repo);
+  return `git@${url.hostname}:${url.pathname.substring(1)}`;
+};
+
 export const getCurrentBranchName = () => execSync('git rev-parse --abbrev-ref HEAD').toString().replace('\n', '');
+
+export const commit = (message: string) => {
+  execSync(`git -c user.email="open-stack@github.com" -c user.name="OpenStack CLI" commit -m"${message}" --no-verify`);
+};

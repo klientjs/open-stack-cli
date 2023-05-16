@@ -40,7 +40,12 @@ export async function runCommand(...args: string[]): Promise<{ code: number; out
   let output: string[] = [];
 
   jest.spyOn(stdout, 'write').mockImplementation((content: unknown) => {
-    output.push((content as string).trim());
+    if (typeof content === 'string') {
+      // Do not trim content which starts intentionally with spaces
+      content = !content.startsWith('   ') ? content.trim() : content.replace('\n', '');
+      output.push(content as string);
+    }
+
     return true;
   });
 
