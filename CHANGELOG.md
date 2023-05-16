@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/klientjs/open-stack-cli/compare/1.1.0...1.1.1) (2023-05-16)
+
+
+### Bug Fixes
+
+* **dependencies:** use better semantic version for glob package ([04bbf80](https://github.com/klientjs/open-stack-cli/commit/04bbf80df7bf911f778e967d7000872ae60ef23d))
+* **report:** remove '.git' in links referencing a repository ([c70252d](https://github.com/klientjs/open-stack-cli/commit/c70252d9587c391a7f9c5c31b1a2f0d56a9f4682))
+
 # [1.1.0](https://github.com/klientjs/open-stack-cli/compare/1.0.0...1.1.0) (2023-05-15)
 
 

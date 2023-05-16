@@ -29,7 +29,7 @@ const sourceRepositoryToUrl = (repo) => {
     const origin = repo || (0, child_process_1.execSync)('git remote get-url origin').toString().replace('\n', '');
     return origin.indexOf('http') !== 0
         ? `https://github.com/${origin.split('@github.com:')[1].replace('.git', '')}`
-        : origin;
+        : origin.replace('.git', '');
 };
 exports.sourceRepositoryToUrl = sourceRepositoryToUrl;
 const getCurrentBranchName = () => (0, child_process_1.execSync)('git rev-parse --abbrev-ref HEAD').toString().replace('\n', '');
