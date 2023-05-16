@@ -28,7 +28,15 @@ export const cloneRepository = (repository: string, tag: string, dir: string) =>
 };
 
 export const sourceRepositoryToUrl = (repo?: string) => {
-  const origin = repo || execSync('git remote get-url origin').toString().replace('\n', '');
+  let origin: string = repo || '';
+
+  if (!repo && execSync('git remote -v').toString().includes('origin')) {
+    origin = execSync('git remote get-url origin').toString().replace('\n', '');
+  }
+
+  if (!origin) {
+    return '';
+  }
 
   return origin.indexOf('http') !== 0
     ? `https://github.com/${origin.split('@github.com:')[1].replace('.git', '')}`
@@ -42,6 +50,8 @@ export const httpToSshOriginUrl = (repo: string) => {
 
 export const getCurrentBranchName = () => execSync('git rev-parse --abbrev-ref HEAD').toString().replace('\n', '');
 
+const gitCommitConfig = '-c user.email="open-stack@github.com" -c user.name="OpenStack CLI"';
+
 export const commit = (message: string) => {
-  execSync(`git -c user.email="open-stack@github.com" -c user.name="OpenStack CLI" commit -m"${message}" --no-verify`);
+  execSync(`git ${gitCommitConfig} commit -m"${message}" --allow-empty --no-verify`);
 };

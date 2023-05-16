@@ -22,6 +22,6 @@ export const createNewProject = () => {
 
   // Initialize git folder
   process.chdir(rootDir);
-  execSync(`git init && git remote add origin https://github.com/example/repo.git`);
+  execSync('git init && git remote add origin git@github.com:example/repo.git');
   process.chdir(initialDir);
 };

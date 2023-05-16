@@ -1,3 +1,6 @@
+import { execSync } from 'child_process';
+import { moveTo } from '../../../src/core/process';
+import { commit } from '../../../src/core/repository';
 import { runCommand, exitMock } from '../../core';
 import { createNewProject, rootDir } from './fixtures';
 import { outputVerbose, outputSimple } from './ouput';
@@ -29,6 +32,19 @@ test('configure:verbose', async () => {
   const { code, output } = await runCommand('configure', rootDir, '--raw', '--verbose');
 
   expect(output).toBe(outputVerbose);
+  expect(code).toBe(0);
+});
+
+test('configure:codespace', async () => {
+  const backToPreviousDir = moveTo(rootDir);
+  execSync('git add .');
+  commit('initial commit');
+  execSync('git remote remove origin');
+  backToPreviousDir();
+
+  const { code, output } = await runCommand('configure', rootDir, '--raw');
+
+  expect(output).toBe(outputSimple);
   expect(code).toBe(0);
 });
 
