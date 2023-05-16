@@ -26,7 +26,13 @@ const cloneRepository = (repository, tag, dir) => {
 };
 exports.cloneRepository = cloneRepository;
 const sourceRepositoryToUrl = (repo) => {
-    const origin = repo || (0, child_process_1.execSync)('git remote get-url origin').toString().replace('\n', '');
+    let origin = repo || '';
+    if (!repo && (0, child_process_1.execSync)('git remote -v').toString().includes('origin')) {
+        origin = (0, child_process_1.execSync)('git remote get-url origin').toString().replace('\n', '');
+    }
+    if (!origin) {
+        return '';
+    }
     return origin.indexOf('http') !== 0
         ? `https://github.com/${origin.split('@github.com:')[1].replace('.git', '')}`
         : origin.replace('.git', '');
@@ -39,7 +45,8 @@ const httpToSshOriginUrl = (repo) => {
 exports.httpToSshOriginUrl = httpToSshOriginUrl;
 const getCurrentBranchName = () => (0, child_process_1.execSync)('git rev-parse --abbrev-ref HEAD').toString().replace('\n', '');
 exports.getCurrentBranchName = getCurrentBranchName;
+const gitCommitConfig = '-c user.email="open-stack@github.com" -c user.name="OpenStack CLI"';
 const commit = (message) => {
-    (0, child_process_1.execSync)(`git -c user.email="open-stack@github.com" -c user.name="OpenStack CLI" commit -m"${message}" --no-verify`);
+    (0, child_process_1.execSync)(`git ${gitCommitConfig} commit -m"${message}" --allow-empty --no-verify`);
 };
 exports.commit = commit;

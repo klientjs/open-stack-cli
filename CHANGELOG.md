@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/klientjs/open-stack-cli/compare/1.3.0...1.3.1) (2023-05-16)
+
+
+### Bug Fixes
+
+* **command:** unable to lunch configure after use open-stack repository in codespace ([3c21724](https://github.com/klientjs/open-stack-cli/commit/3c217242c3c8a3756debc7534186a277b4208b31))
+
 # [1.3.0](https://github.com/klientjs/open-stack-cli/compare/1.2.0...1.3.0) (2023-05-16)
 
 
