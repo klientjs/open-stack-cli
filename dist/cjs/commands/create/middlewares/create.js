@@ -23,7 +23,7 @@ exports.default = (context) => __awaiter(void 0, void 0, void 0, function* () {
     logger.info(`Create project using ${version} in ${dir}`, 2);
     (0, repository_1.cloneRepository)(repository || config_1.default.repository, version, dir);
     logger.info(`Move to ${dir}`, 2);
-    (0, process_1.moveTo)(dir);
+    let backToPreviousDir = (0, process_1.moveTo)(dir);
     logger.step('Initialize git folder');
     logger.info('Remove current git folder', 2);
     fs.rmSync('.git', { recursive: true, force: true });
@@ -36,11 +36,14 @@ exports.default = (context) => __awaiter(void 0, void 0, void 0, function* () {
     (0, repository_1.commit)('initial commit');
     logger.step('Install dependencies');
     (0, child_process_1.execSync)('npm install');
+    logger.step('Upgrade open-stack cli');
+    (0, child_process_1.execSync)('npm upgrade @klient/open-stack-cli');
+    backToPreviousDir();
     logger.step('Lunch open-stack configure command');
     logger.divide();
     yield (0, command_1.default)(configure_1.default, inputs, false);
     logger.divide();
-    const backToPreviousDir = (0, process_1.moveTo)(dir);
+    backToPreviousDir = (0, process_1.moveTo)(dir);
     logger.step('Commit configuration changes');
     (0, child_process_1.execSync)('git add .');
     (0, repository_1.commit)('chore(stack): configure project');
