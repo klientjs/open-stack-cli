@@ -2,6 +2,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import Logger from './core/logger';
 import execute from './core/command';
+import create from './commands/create';
 import configure from './commands/configure';
 import update from './commands/update';
 import badge from './commands/badge';
@@ -10,6 +11,11 @@ export default yargs(hideBin(process.argv))
     .parserConfiguration({
     'dot-notation': false
 })
+    .command('create [dir]', 'Create open-stack project', (y) => y
+    .version(false)
+    .positional('dir', { describe: 'Target directory', default: '.' })
+    .option('repository', { type: 'string', description: 'Open-stack repository URL' })
+    .option('version', { type: 'string', description: 'Current open-stack version', default: 'latest' }), (args) => execute(create, args))
     .command('configure [dir]', 'Create open-stack project', (y) => y.positional('dir', { describe: 'Target directory', default: '.' }), (args) => execute(configure, args))
     .command('update [dir]', 'Update target dir to specific open-stack version', (y) => y
     .positional('dir', { describe: 'Directory', default: '.' })

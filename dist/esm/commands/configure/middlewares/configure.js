@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import * as prompts from 'prompts';
 import * as fs from 'fs';
 import { execSync } from 'child_process';
+import config from '../../../core/config';
 import { sourceRepositoryToUrl } from '../../../core/repository';
 const requirePrompt = (v) => v !== '' || 'Required';
 export default (context) => __awaiter(void 0, void 0, void 0, function* () {
@@ -21,6 +22,7 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
         logger.info(`Moved to ${dir}`, 2);
     }
     logger.step('Initialize');
+    const sourceRepository = `${sourceRepositoryToUrl()}.git`;
     const responses = yield prompts([
         {
             message: 'What is the full package name ? (including org name if need)',
@@ -29,28 +31,31 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
             validate: requirePrompt
         },
         {
-            message: 'Describe your package in one sentence',
-            type: 'text',
-            name: 'description',
-            validate: requirePrompt
-        },
-        {
-            message: 'Can you give some keyworks that relate to your package ?',
-            type: 'text',
-            name: 'keywords'
-        },
-        {
-            message: 'What will be the repository URL ?',
+            message: 'What will be the repository URL (https) ?',
             type: 'text',
             name: 'repository',
-            initial: `${sourceRepositoryToUrl()}.git`,
+            initial: sourceRepository !== config.repository ? `${sourceRepository}.git` : '',
             validate: requirePrompt
         },
         {
             message: 'What is your exact username (or organization name) ?',
             type: 'text',
             name: 'owner',
-            validate: requirePrompt
+            validate: requirePrompt,
+            initial: (prev) => {
+                const url = new URL(prev);
+                return url.pathname.split('/')[1];
+            }
+        },
+        {
+            message: 'Can you describe your package in one sentence ?',
+            type: 'text',
+            name: 'description'
+        },
+        {
+            message: 'Can you give some keyworks that relate to your package ?',
+            type: 'text',
+            name: 'keywords'
         }
     ], {
         onCancel: () => process.exit(1)
@@ -58,10 +63,14 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     logger.step('Configure project');
     logger.info('Update package.json', 2);
     execSync(`npm pkg set name="${responses.name}"`);
-    execSync(`npm pkg set description="${responses.description}"`);
     execSync(`npm pkg set repository.url="${responses.repository}"`);
-    responses.keywords.split(' ').forEach((k, i) => execSync(`npm pkg set keywords.${i}=${k}`));
     execSync('npm pkg set repository.type=git');
+    if (responses.description !== '') {
+        execSync(`npm pkg set description="${responses.description}"`);
+    }
+    if (responses.keywords !== '') {
+        responses.keywords.split(' ').forEach((k, i) => execSync(`npm pkg set keywords.${i}=${k}`));
+    }
     execSync('npm pkg delete scripts.configure');
     logger.info('Update README.md', 2);
     fs.writeFileSync('README.md', `# ${responses.name}\n\n![badge-coverage](.github/badges/coverage.svg)\n`);
@@ -69,6 +78,6 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     const licence = fs.readFileSync('LICENCE').toString();
     fs.writeFileSync('LICENCE', licence.replace(/Copyright \(c\) (.*) klientjs/g, `Copyright (c) ${new Date().getFullYear()} ${responses.owner}`));
     logger.info('Clear folders', 2);
-    ['docs'].forEach((folder) => fs.rmSync(folder, { recursive: true, force: true }));
+    ['doc'].forEach((folder) => fs.rmSync(folder, { recursive: true, force: true }));
     logger.success('Successfully configured');
 });

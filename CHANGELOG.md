@@ -1,5 +1,17 @@
 # Changelog
 
+# [1.2.0](https://github.com/klientjs/open-stack-cli/compare/1.1.1...1.2.0) (2023-05-16)
+
+
+### Bug Fixes
+
+* **command:** avoid crash during configure command ([be515ab](https://github.com/klientjs/open-stack-cli/commit/be515abaea1bcc85b9ac42556521b3444e304ae1))
+
+
+### Features
+
+* **command:** add create command to build new open-stack project quickly ([34bd1ea](https://github.com/klientjs/open-stack-cli/commit/34bd1eabce6ea04a3da613b563a69df6890fe555))
+
 ## [1.1.1](https://github.com/klientjs/open-stack-cli/compare/1.1.0...1.1.1) (2023-05-16)
 
 

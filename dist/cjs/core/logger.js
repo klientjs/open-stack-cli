@@ -11,7 +11,7 @@ class Logger {
         this.verbosity = verbosity;
         this.colors = colors;
     }
-    write(x, minVerbosity) {
+    write(x, minVerbosity = 1) {
         if (this.verbosity > 0 && this.verbosity >= minVerbosity) {
             let output = x;
             if (!this.colors) {
@@ -40,6 +40,12 @@ class Logger {
     }
     infoSubTitle(x, mv = 1) {
         return this.write(chalk.dim(`[info] | ${chalk.underline(x)}`), mv);
+    }
+    divide() {
+        const style = chalk.cyan.bold;
+        this.write(style('       |'));
+        this.write(style('====== |'));
+        this.write(style('       |'));
     }
 }
 exports.default = Logger;

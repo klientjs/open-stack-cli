@@ -27,4 +27,11 @@ export const sourceRepositoryToUrl = (repo) => {
         ? `https://github.com/${origin.split('@github.com:')[1].replace('.git', '')}`
         : origin.replace('.git', '');
 };
+export const httpToSshOriginUrl = (repo) => {
+    const url = new URL(repo);
+    return `git@${url.hostname}:${url.pathname.substring(1)}`;
+};
 export const getCurrentBranchName = () => execSync('git rev-parse --abbrev-ref HEAD').toString().replace('\n', '');
+export const commit = (message) => {
+    execSync(`git -c user.email="open-stack@github.com" -c user.name="OpenStack CLI" commit -m"${message}" --no-verify`);
+};

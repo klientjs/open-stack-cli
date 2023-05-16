@@ -6,5 +6,5 @@ export declare type Command<T extends Context = Context> = {
     process: Middleware<T>[];
     postProcess?: Middleware<T>[];
 };
-export default function execute<T extends Context = Context>(command: Command<T>, args: Args): Promise<void>;
+export default function execute<T extends Context = Context>(command: Command<T>, args: Args, allowExit?: boolean): Promise<void>;
 export {};

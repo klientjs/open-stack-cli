@@ -3,9 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.tmpRootDir = void 0;
 const os = require("os");
 const path = require("path");
+const config_1 = require("../../core/config");
 const context_1 = require("../../core/context");
 exports.tmpRootDir = path.join(os.tmpdir(), 'open-stack-cli');
-const defaults = Object.assign(Object.assign({}, context_1.defaultInputs), { to: 'latest', from: '', report: '', dir: '.', repository: 'https://github.com/klientjs/open-stack.git', dry: false, files: [
+const defaults = Object.assign(Object.assign({}, context_1.defaultInputs), { to: 'latest', from: '', report: '', dir: '.', repository: config_1.default.repository, dry: false, files: [
         '.github/ISSUE_TEMPLATE/*',
         '.github/workflows/*',
         '.github/PULL_REQUEST_TEMPLATE.md',

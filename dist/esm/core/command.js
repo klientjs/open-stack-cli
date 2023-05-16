@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import buildContext from './context';
 import { resetCwd } from './process';
-export default function execute(command, args) {
+export default function execute(command, args, allowExit = true) {
     return __awaiter(this, void 0, void 0, function* () {
         let code = 0;
         let promise;
@@ -33,6 +33,8 @@ export default function execute(command, args) {
             }
         }
         resetCwd();
-        process.exit(code);
+        if (allowExit) {
+            process.exit(code);
+        }
     });
 }

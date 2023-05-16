@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCurrentBranchName = exports.sourceRepositoryToUrl = exports.cloneRepository = void 0;
+exports.commit = exports.getCurrentBranchName = exports.httpToSshOriginUrl = exports.sourceRepositoryToUrl = exports.cloneRepository = void 0;
 const child_process_1 = require("child_process");
 const process_1 = require("./process");
 const cloneLatestVersion = (repository, dir) => {
@@ -32,5 +32,14 @@ const sourceRepositoryToUrl = (repo) => {
         : origin.replace('.git', '');
 };
 exports.sourceRepositoryToUrl = sourceRepositoryToUrl;
+const httpToSshOriginUrl = (repo) => {
+    const url = new URL(repo);
+    return `git@${url.hostname}:${url.pathname.substring(1)}`;
+};
+exports.httpToSshOriginUrl = httpToSshOriginUrl;
 const getCurrentBranchName = () => (0, child_process_1.execSync)('git rev-parse --abbrev-ref HEAD').toString().replace('\n', '');
 exports.getCurrentBranchName = getCurrentBranchName;
+const commit = (message) => {
+    (0, child_process_1.execSync)(`git -c user.email="open-stack@github.com" -c user.name="OpenStack CLI" commit -m"${message}" --no-verify`);
+};
+exports.commit = commit;

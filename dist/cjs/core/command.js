@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const context_1 = require("./context");
 const process_1 = require("./process");
-function execute(command, args) {
+function execute(command, args, allowExit = true) {
     return __awaiter(this, void 0, void 0, function* () {
         let code = 0;
         let promise;
@@ -35,7 +35,9 @@ function execute(command, args) {
             }
         }
         (0, process_1.resetCwd)();
-        process.exit(code);
+        if (allowExit) {
+            process.exit(code);
+        }
     });
 }
 exports.default = execute;
