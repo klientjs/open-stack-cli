@@ -19,7 +19,7 @@ export default async (context: Context) => {
   cloneRepository(repository || config.repository, version, dir);
 
   logger.info(`Move to ${dir}`, 2);
-  moveTo(dir);
+  let backToPreviousDir = moveTo(dir);
 
   logger.step('Initialize git folder');
   logger.info('Remove current git folder', 2);
@@ -39,13 +39,18 @@ export default async (context: Context) => {
   logger.step('Install dependencies');
   execSync('npm install');
 
+  logger.step('Upgrade open-stack cli');
+  execSync('npm upgrade @klient/open-stack-cli');
+
+  backToPreviousDir();
+
   logger.step('Lunch open-stack configure command');
 
   logger.divide();
   await execute(configure, inputs, false);
   logger.divide();
 
-  const backToPreviousDir = moveTo(dir);
+  backToPreviousDir = moveTo(dir);
 
   logger.step('Commit configuration changes');
   execSync('git add .');

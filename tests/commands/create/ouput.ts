@@ -3,6 +3,7 @@ import { projectDir } from './fixtures';
 export const outputSimple = `[step] | Clone open-stack
 [step] | Initialize git folder
 [step] | Install dependencies
+[step] | Upgrade open-stack cli
 [step] | Lunch open-stack configure command
        |
 ====== |
@@ -27,6 +28,7 @@ export const outputVerbose = `[step] | Clone open-stack
 [info] | Add all untracked files
 [info] | Create initial commit
 [step] | Install dependencies
+[step] | Upgrade open-stack cli
 [step] | Lunch open-stack configure command
        |
 ====== |
@@ -57,6 +59,7 @@ export const outputVersionVerbose = `[step] | Clone open-stack
 [info] | Add all untracked files
 [info] | Create initial commit
 [step] | Install dependencies
+[step] | Upgrade open-stack cli
 [step] | Lunch open-stack configure command
        |
 ====== |
