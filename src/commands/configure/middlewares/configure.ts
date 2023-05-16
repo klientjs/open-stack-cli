@@ -2,6 +2,7 @@ import * as prompts from 'prompts';
 import * as fs from 'fs';
 import { execSync } from 'child_process';
 
+import config from '../../../core/config';
 import { sourceRepositoryToUrl } from '../../../core/repository';
 
 import type { Context } from '../context';
@@ -20,6 +21,8 @@ export default async (context: Context) => {
 
   logger.step('Initialize');
 
+  const sourceRepository = `${sourceRepositoryToUrl()}.git`;
+
   const responses: Record<string, string> = await prompts(
     [
       {
@@ -29,28 +32,31 @@ export default async (context: Context) => {
         validate: requirePrompt
       },
       {
-        message: 'Describe your package in one sentence',
-        type: 'text',
-        name: 'description',
-        validate: requirePrompt
-      },
-      {
-        message: 'Can you give some keyworks that relate to your package ?',
-        type: 'text',
-        name: 'keywords'
-      },
-      {
-        message: 'What will be the repository URL ?',
+        message: 'What will be the repository URL (https) ?',
         type: 'text',
         name: 'repository',
-        initial: `${sourceRepositoryToUrl()}.git`,
+        initial: sourceRepository !== config.repository ? `${sourceRepository}.git` : '',
         validate: requirePrompt
       },
       {
         message: 'What is your exact username (or organization name) ?',
         type: 'text',
         name: 'owner',
-        validate: requirePrompt
+        validate: requirePrompt,
+        initial: (prev: string) => {
+          const url = new URL(prev);
+          return url.pathname.split('/')[1];
+        }
+      },
+      {
+        message: 'Can you describe your package in one sentence ?',
+        type: 'text',
+        name: 'description'
+      },
+      {
+        message: 'Can you give some keyworks that relate to your package ?',
+        type: 'text',
+        name: 'keywords'
       }
     ],
     {
@@ -62,12 +68,17 @@ export default async (context: Context) => {
   logger.info('Update package.json', 2);
 
   execSync(`npm pkg set name="${responses.name}"`);
-  execSync(`npm pkg set description="${responses.description}"`);
   execSync(`npm pkg set repository.url="${responses.repository}"`);
-
-  responses.keywords.split(' ').forEach((k, i) => execSync(`npm pkg set keywords.${i}=${k}`));
-
   execSync('npm pkg set repository.type=git');
+
+  if (responses.description !== '') {
+    execSync(`npm pkg set description="${responses.description}"`);
+  }
+
+  if (responses.keywords !== '') {
+    responses.keywords.split(' ').forEach((k, i) => execSync(`npm pkg set keywords.${i}=${k}`));
+  }
+
   execSync('npm pkg delete scripts.configure');
 
   logger.info('Update README.md', 2);
@@ -85,7 +96,7 @@ export default async (context: Context) => {
 
   logger.info('Clear folders', 2);
 
-  ['docs'].forEach((folder) => fs.rmSync(folder, { recursive: true, force: true }));
+  ['doc'].forEach((folder) => fs.rmSync(folder, { recursive: true, force: true }));
 
   logger.success('Successfully configured');
 };

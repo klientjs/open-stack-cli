@@ -50,6 +50,21 @@ test('configure:validate', async () => {
   expect(code).toBe(0);
 });
 
+test('configure:owner:initial', async () => {
+  jest.mock('prompts', () => (questions: PromptObject[]) => {
+    const repoQuestion = questions.find((q) => q.name === 'owner') as any;
+
+    expect(repoQuestion.initial('https://github.com/klientjs/example.git')).toBe('klientjs');
+
+    return Promise.resolve(responses);
+  });
+
+  const { code, output } = await runCommand('configure', rootDir, '--raw');
+
+  expect(output).toBe(outputSimple);
+  expect(code).toBe(0);
+});
+
 test('configure:cancel', async () => {
   jest.mock('prompts', () => (_questions: any, options: any) => {
     options.onCancel();

@@ -28,6 +28,7 @@ export default async (context: Context) => {
 
   logger.info('Initialize fresh git folder', 2);
   execSync('git init');
+  execSync(`git remote add origin ${config.repository}`);
 
   logger.info('Add all untracked files', 2);
   execSync('git add .');
@@ -41,11 +42,7 @@ export default async (context: Context) => {
   logger.step('Lunch open-stack configure command');
 
   logger.divide();
-
-  // TODO : Fix bug related to line below
-  execSync(`git remote add origin ${config.repository}`);
   await execute(configure, inputs, false);
-
   logger.divide();
 
   const backToPreviousDir = moveTo(dir);
