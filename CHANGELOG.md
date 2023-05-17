@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.2](https://github.com/klientjs/open-stack-cli/compare/1.3.1...1.3.2) (2023-05-17)
+
+
+### Features
+
+* **command:** improve create command output ([cd5bacf](https://github.com/klientjs/open-stack-cli/commit/cd5bacf102a2498128cacc9839e163e3e9473acb))
+* **core:** always init git repository using main as default branch name ([2c7eea5](https://github.com/klientjs/open-stack-cli/commit/2c7eea55a02851150a662e99b7ea8061d7c9b09b))
+
 ## [1.3.1](https://github.com/klientjs/open-stack-cli/compare/1.3.0...1.3.1) (2023-05-16)
 
 

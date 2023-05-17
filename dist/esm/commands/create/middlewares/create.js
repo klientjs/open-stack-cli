@@ -26,7 +26,7 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     logger.info('Remove current git folder', 2);
     fs.rmSync('.git', { recursive: true, force: true });
     logger.info('Initialize fresh git folder', 2);
-    execSync('git init');
+    execSync('git -c init.defaultBranch="main" init');
     execSync(`git remote add origin ${config.repository}`);
     logger.info('Add all untracked files', 2);
     execSync('git add .');
@@ -48,7 +48,7 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     logger.step('Configure the remote origin');
     const repoUrl = execSync('npm pkg get repository.url').toString().replace('\n', '').replace(/"/g, '');
     const remote = httpToSshOriginUrl(repoUrl);
-    logger.info(`Configure the remote origin ${remote}`, 2);
+    logger.info(`Set origin url with ${remote}`, 2);
     execSync(`git remote set-url origin ${remote}`);
     backToPreviousDir();
     logger.success('Project is ready to be pushed, you need to run git push by yourself');
