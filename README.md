@@ -68,7 +68,7 @@ $ git push                  # Push project !
 
 ### Configure
 
-This command is useful to configure a new project based on open-stack template. It will remove content related to open-stack repository and configure the project files for the new package. This command should be run after git clone open-stack and npm install in cloned dir.
+This command is useful to configure a new project based on open-stack template. It will remove content related to open-stack repository and configure the project files for the new package. This command should be run after git clone open-stack and before npm install.
 
 ```bash
 $ npx open-stack configure
