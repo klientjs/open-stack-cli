@@ -47,7 +47,7 @@ export const outputVerbose = `[step] | Clone open-stack
        |
 [step] | Commit configuration changes
 [step] | Configure the remote origin
-[info] | Configure the remote origin git@github.com:klientjs/example
+[info] | Set origin url with git@github.com:klientjs/example
 [pass] | Project is ready to be pushed, you need to run git push by yourself`;
 
 export const outputVersionVerbose = `[step] | Clone open-stack
@@ -78,7 +78,7 @@ export const outputVersionVerbose = `[step] | Clone open-stack
        |
 [step] | Commit configuration changes
 [step] | Configure the remote origin
-[info] | Configure the remote origin git@github.com:klientjs/example
+[info] | Set origin url with git@github.com:klientjs/example
 [pass] | Project is ready to be pushed, you need to run git push by yourself`;
 
 export const outputInvalidVersion = `[step] | Clone open-stack

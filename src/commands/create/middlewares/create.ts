@@ -61,7 +61,7 @@ export default async (context: Context) => {
   const repoUrl = execSync('npm pkg get repository.url').toString().replace('\n', '').replace(/"/g, '');
   const remote = httpToSshOriginUrl(repoUrl);
 
-  logger.info(`Configure the remote origin ${remote}`, 2);
+  logger.info(`Set origin url with ${remote}`, 2);
   execSync(`git remote set-url origin ${remote}`);
 
   backToPreviousDir();
