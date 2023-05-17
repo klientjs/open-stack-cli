@@ -27,7 +27,7 @@ export default async (context: Context) => {
   fs.rmSync('.git', { recursive: true, force: true });
 
   logger.info('Initialize fresh git folder', 2);
-  execSync('git init');
+  execSync('git -c init.defaultBranch="main" init');
   execSync(`git remote add origin ${config.repository}`);
 
   logger.info('Add all untracked files', 2);
