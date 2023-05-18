@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/klientjs/open-stack-cli/compare/1.4.0...1.4.1) (2023-05-18)
+
+
+### Features
+
+* **command:** allow generate badge based on statements value only ([c71ab0f](https://github.com/klientjs/open-stack-cli/commit/c71ab0ff5455fbb852d98f21b9e0eccab173b946))
+
 # [1.4.0](https://github.com/klientjs/open-stack-cli/compare/1.3.2...1.4.0) (2023-05-18)
 
 

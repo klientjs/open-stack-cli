@@ -36,7 +36,12 @@ export default yargs(hideBin(process.argv))
     default: 'coverage/coverage-summary.json'
 })
     .option('output', { type: 'string', description: 'Target output file patg', default: 'coverage/badge.svg' })
-    .option('label', { type: 'string', description: 'Label of badge', default: 'Coverage' }), (args) => execute(badge, args))
+    .option('label', { type: 'string', description: 'Label of badge', default: 'Coverage' })
+    .option('incomplete', {
+    type: 'boolean',
+    description: 'Use only coverage statement member value',
+    default: false
+}), (args) => execute(badge, args))
     .command({
     command: '*',
     handler() {
