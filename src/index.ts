@@ -28,10 +28,10 @@ export default yargs(hideBin(process.argv))
     (args) => execute(create, args)
   )
 
-  // <--- CREATE --->
+  // <--- CONFIGURE --->
   .command(
     'configure [dir]',
-    'Create open-stack project',
+    'Configure open-stack project',
     (y) => y.positional('dir', { describe: 'Target directory', default: '.' }),
     (args) => execute(configure, args)
   )
