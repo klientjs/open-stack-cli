@@ -21,7 +21,8 @@ export default async (context: Context) => {
 
   logger.step('Initialize');
 
-  const sourceRepository = `${sourceRepositoryToUrl()}.git`;
+  const repoUrl = sourceRepositoryToUrl();
+  const sourceRepository = repoUrl && `${repoUrl}.git`;
 
   const responses: Record<string, string> = await prompts(
     [
