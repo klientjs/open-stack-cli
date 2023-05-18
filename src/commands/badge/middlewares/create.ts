@@ -22,18 +22,22 @@ const downloadBadge = (url: string, output: string) =>
 
 export default async (context: Context) => {
   const { logger, inputs } = context;
-  const { input, output, label } = inputs;
+  const { input, output, label, incomplete } = inputs;
 
   logger.step('Analyze coverage');
   logger.info(`Read ${input}`, 2);
 
   const coverageData = JSON.parse(fs.readFileSync(input).toString());
   const coverageMembers = Object.keys(coverageData.total).filter((n) => n !== 'branchesTrue');
-  const coverageAmount = coverageMembers.map((n) => coverageData.total[n].pct).reduce((a, b) => a + b);
-
-  const coverageValue = Math.round((coverageAmount / coverageMembers.length) * 100) / 100;
 
   coverageMembers.forEach((n) => logger.info(`- ${n}: ${coverageData.total[n].pct}%`, 2));
+
+  let coverageValue = coverageData.total.statements.pct;
+
+  if (!incomplete) {
+    const coverageAmount = coverageMembers.map((n) => coverageData.total[n].pct).reduce((a, b) => a + b);
+    coverageValue = Math.round((coverageAmount / coverageMembers.length) * 100) / 100;
+  }
 
   logger.info('-----------------------', 2);
   logger.info(`TOTAL: ${coverageValue}%`, 2);

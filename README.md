@@ -104,8 +104,21 @@ $ git push
 Create svg coverage badge by making a request to `https://img.shields.io`
 
 ```bash
+# Create badge based on all coverage members (lines, statements, functions, branches)
 $ npx open-stack badge --input coverage/coverage-summary.json --output badge.svg
+
+# Create badge based on statements only
+$ npx open-stack badge --input coverage/coverage-summary.json --output badge.svg --incomplete
 ```
+
+Note that the badge color is determinated by following rules :
+
+- red : 0 to 60%
+- orange : 60% to 70%
+- yellow : 70% to 80%
+- lightgreen : 80% to 90%
+- green : 90% to 95%
+- brightgreen : 95% to 100%
 
 ### Update
 

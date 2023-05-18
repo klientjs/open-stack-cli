@@ -4,6 +4,7 @@ export interface Inputs extends BaseInputs {
   output: string;
   input: string;
   label: string;
+  incomplete: boolean;
 }
 
 export interface Context extends BaseContext {

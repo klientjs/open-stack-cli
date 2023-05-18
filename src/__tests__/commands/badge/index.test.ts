@@ -7,7 +7,8 @@ import {
   outputVerboseGreen,
   outputVerboseYellow,
   outputVerboseOrange,
-  outputVerboseRed
+  outputVerboseRed,
+  outputIncompleteVerbose
 } from './ouput';
 
 jest.useRealTimers();
@@ -45,6 +46,24 @@ test('badge', async () => {
   const { code, output } = await runCommand('badge', '--input', coverageSummary, '--output', badgeOutput, '--raw');
 
   expect(output).toBe(outputSimple);
+  expect(code).toBe(0);
+});
+
+test('badge:incomplete', async () => {
+  createCoverageSummary(0, 80, 0, 0, 0);
+
+  const { code, output } = await runCommand(
+    'badge',
+    '--input',
+    coverageSummary,
+    '--output',
+    badgeOutput,
+    '--incomplete',
+    '--verbose',
+    '--raw'
+  );
+
+  expect(output).toBe(outputIncompleteVerbose);
   expect(code).toBe(0);
 });
 

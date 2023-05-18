@@ -17,6 +17,19 @@ export const outputVerbose = `[step] | Analyze coverage
 [info] | Content uploaded in ${badgeOutput}
 [pass] | Successfully generated`;
 
+export const outputIncompleteVerbose = `[step] | Analyze coverage
+[info] | Read ${coverageSummary}
+[info] | - lines: 0%
+[info] | - statements: 80%
+[info] | - functions: 0%
+[info] | - branches: 0%
+[info] | -----------------------
+[info] | TOTAL: 80%
+[step] | Create badge
+[info] | Make request to https://img.shields.io/badge/Coverage-80%25-lightgreen.svg
+[info] | Content uploaded in ${badgeOutput}
+[pass] | Successfully generated`;
+
 export const outputVerboseGreen = `[step] | Analyze coverage
 [info] | Read ${coverageSummary}
 [info] | - lines: 91%
