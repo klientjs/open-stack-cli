@@ -39,8 +39,8 @@ export default async (context: Context) => {
   logger.step('Install dependencies');
   execSync('npm install');
 
-  logger.step('Upgrade open-stack cli');
-  execSync('npm upgrade @klient/open-stack-cli');
+  logger.step('Update open-stack cli');
+  execSync('npm update @klient/open-stack-cli');
 
   backToPreviousDir();
 
