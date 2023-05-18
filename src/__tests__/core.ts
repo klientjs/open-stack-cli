@@ -49,7 +49,7 @@ export async function runCommand(...args: string[]): Promise<{ code: number; out
     return true;
   });
 
-  const parser = require('../src').default;
+  const parser = require('..').default;
 
   return await new Promise((resolve) => {
     parser.parse(args, () => {

@@ -1,7 +1,7 @@
 import * as os from 'os';
 import { execSync } from 'child_process';
 import { runCommand } from '../../core';
-import { moveTo } from '../../../src/core/process';
+import { moveTo } from '../../../core/process';
 import { createFixtures, tmpRootDir, projectDir } from './fixtures';
 import { outputInvalidRepo, outputInvalidConfig, outputInvalidTag } from './ouput';
 

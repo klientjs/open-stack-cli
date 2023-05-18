@@ -4,7 +4,7 @@ test('cli', () => {
   const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
 
   process.argv = ['node', 'index.ts', 'help'];
-  require('../src/cli');
+  require('../cli');
   process.argv = originalArgv;
 
   expect(exitSpy).toBeCalledWith(0);

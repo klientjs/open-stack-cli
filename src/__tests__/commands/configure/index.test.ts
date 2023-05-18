@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
-import { moveTo } from '../../../src/core/process';
-import { commit } from '../../../src/core/repository';
+import { moveTo } from '../../../core/process';
+import { commit } from '../../../core/repository';
 import { runCommand, exitMock } from '../../core';
 import { createNewProject, rootDir } from './fixtures';
 import { outputVerbose, outputSimple } from './ouput';
