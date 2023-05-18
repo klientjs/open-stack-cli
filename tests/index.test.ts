@@ -29,3 +29,8 @@ test('configure:help', async () => {
   const { code } = await runCommand('configure', '--help');
   expect(code).toBe(0);
 });
+
+test('setup:help', async () => {
+  const { code } = await runCommand('setup', '--help');
+  expect(code).toBe(0);
+});

@@ -74,6 +74,31 @@ This command is useful to configure a new project based on open-stack template. 
 $ npx open-stack configure
 ```
 
+### Setup
+
+This command is useful to setup an external library in open-stack project.
+
+For now, you can you following libraries : 
+
+`react-app` : Setup your project as create-react-app (for web application only)
+
+**Caution : This should be used just after create command (in fresh blank project) with no untracked files present** 
+
+```bash
+$ npx open-stack create ./example
+$ cd ./example
+$ npx open-stack setup react-app
+
+# Project has been updated, you can change diff with git commands
+$ git status
+$ git diff
+
+# Commit changes made if all is clean for you
+$ git add .
+$ git commit -m"chore(stack): setup react-app"
+$ git push
+```
+
 ### Badge
 
 Create svg coverage badge by making a request to `https://img.shields.io`
