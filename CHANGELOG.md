@@ -1,5 +1,17 @@
 # Changelog
 
+# [1.4.0](https://github.com/klientjs/open-stack-cli/compare/1.3.2...1.4.0) (2023-05-18)
+
+
+### Bug Fixes
+
+* **command:** use specific description for configure command ([c765c05](https://github.com/klientjs/open-stack-cli/commit/c765c05a24f566db4e541c0c61518f07c03e4e13))
+
+
+### Features
+
+* **command:** add setup command for project based on react (experimental) ([25e0177](https://github.com/klientjs/open-stack-cli/commit/25e0177d349d071c716d73fcfa400452ffbde7db))
+
 ## [1.3.2](https://github.com/klientjs/open-stack-cli/compare/1.3.1...1.3.2) (2023-05-17)
 
 

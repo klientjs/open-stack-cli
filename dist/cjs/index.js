@@ -4,6 +4,7 @@ const yargs_1 = require("yargs");
 const helpers_1 = require("yargs/helpers");
 const logger_1 = require("./core/logger");
 const command_1 = require("./core/command");
+const setup_1 = require("./commands/setup");
 const create_1 = require("./commands/create");
 const configure_1 = require("./commands/configure");
 const update_1 = require("./commands/update");
@@ -18,7 +19,10 @@ exports.default = (0, yargs_1.default)((0, helpers_1.hideBin)(process.argv))
     .positional('dir', { describe: 'Target directory', default: '.' })
     .option('repository', { type: 'string', description: 'Open-stack repository URL' })
     .option('version', { type: 'string', description: 'Current open-stack version', default: 'latest' }), (args) => (0, command_1.default)(create_1.default, args))
-    .command('configure [dir]', 'Create open-stack project', (y) => y.positional('dir', { describe: 'Target directory', default: '.' }), (args) => (0, command_1.default)(configure_1.default, args))
+    .command('configure [dir]', 'Configure open-stack project', (y) => y.positional('dir', { describe: 'Target directory', default: '.' }), (args) => (0, command_1.default)(configure_1.default, args))
+    .command('setup [lib] [dir]', 'Set up specific library in open-stack project (experimental)', (y) => y
+    .positional('lib', { describe: 'Library name (available: react-app)' })
+    .positional('dir', { describe: 'Target directory', default: '.' }), (args) => (0, command_1.default)(setup_1.default, args))
     .command('update [dir]', 'Update target dir to specific open-stack version', (y) => y
     .positional('dir', { describe: 'Directory', default: '.' })
     .option('to', { type: 'string', description: 'To open-stack version' })
