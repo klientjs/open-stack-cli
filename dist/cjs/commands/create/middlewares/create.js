@@ -36,8 +36,8 @@ exports.default = (context) => __awaiter(void 0, void 0, void 0, function* () {
     (0, repository_1.commit)('initial commit');
     logger.step('Install dependencies');
     (0, child_process_1.execSync)('npm install');
-    logger.step('Upgrade open-stack cli');
-    (0, child_process_1.execSync)('npm upgrade @klient/open-stack-cli');
+    logger.step('Update open-stack cli');
+    (0, child_process_1.execSync)('npm update @klient/open-stack-cli');
     backToPreviousDir();
     logger.step('Lunch open-stack configure command');
     logger.divide();

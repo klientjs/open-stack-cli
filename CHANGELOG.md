@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.2](https://github.com/klientjs/open-stack-cli/compare/1.4.1...1.4.2) (2023-05-18)
+
+
+### Bug Fixes
+
+* invalid prompt suggestion in codespace for repository url ([30e25f3](https://github.com/klientjs/open-stack-cli/commit/30e25f32c7215ac10f8c916b6217cb9e089f62df))
+
+
+### Features
+
+* **command:** correctly update cli during create open-stack project ([6ba69dd](https://github.com/klientjs/open-stack-cli/commit/6ba69dd35e382a889a9bc4650a5e68d6026cc834))
+
 ## [1.4.1](https://github.com/klientjs/open-stack-cli/compare/1.4.0...1.4.1) (2023-05-18)
 
 

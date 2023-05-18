@@ -22,7 +22,8 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
         logger.info(`Moved to ${dir}`, 2);
     }
     logger.step('Initialize');
-    const sourceRepository = `${sourceRepositoryToUrl()}.git`;
+    const repoUrl = sourceRepositoryToUrl();
+    const sourceRepository = repoUrl && `${repoUrl}.git`;
     const responses = yield prompts([
         {
             message: 'What is the full package name ? (including org name if need)',
