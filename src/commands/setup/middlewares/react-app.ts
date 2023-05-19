@@ -25,7 +25,7 @@ const pkg: Record<string, Record<string, string>> = {
     'react-scripts': reactScriptVersion
   },
   scripts: {
-    test: 'react-scripts test --collectCoverage --coverageReporters json-summary --coverageReporters lcov --watchAll=false',
+    test: 'react-scripts test --coverage --coverageReporters json-summary lcov text text-summary --watchAll=false --passWithNoTests',
     dist: 'rm -rf dist/* && BUILD_PATH=dist react-scripts build',
     start: 'react-scripts start'
   },
