@@ -34,9 +34,13 @@ export default async (context: Context) => {
 
   let coverageValue = coverageData.total.statements.pct;
 
-  if (!incomplete) {
-    const coverageAmount = coverageMembers.map((n) => coverageData.total[n].pct).reduce((a, b) => a + b);
-    coverageValue = Math.round((coverageAmount / coverageMembers.length) * 100) / 100;
+  if (coverageValue !== 'Unknown') {
+    if (!incomplete) {
+      const coverageAmount = coverageMembers.map((n) => coverageData.total[n].pct).reduce((a, b) => a + b);
+      coverageValue = Math.round((coverageAmount / coverageMembers.length) * 100) / 100;
+    }
+  } else {
+    coverageValue = 0;
   }
 
   logger.info('-----------------------', 2);

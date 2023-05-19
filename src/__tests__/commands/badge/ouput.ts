@@ -94,3 +94,16 @@ export const outputVerboseRed = `[step] | Analyze coverage
 [info] | Make request to https://img.shields.io/badge/Coverage-50%25-red.svg
 [info] | Content uploaded in ${badgeOutput}
 [pass] | Successfully generated`;
+
+export const outputVerboseUnknown = `[step] | Analyze coverage
+[info] | Read ${coverageSummary}
+[info] | - lines: Unknown%
+[info] | - statements: Unknown%
+[info] | - functions: Unknown%
+[info] | - branches: Unknown%
+[info] | -----------------------
+[info] | TOTAL: 0%
+[step] | Create badge
+[info] | Make request to https://img.shields.io/badge/Coverage-0%25-red.svg
+[info] | Content uploaded in ${badgeOutput}
+[pass] | Successfully generated`;

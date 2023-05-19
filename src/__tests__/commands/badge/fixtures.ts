@@ -6,11 +6,11 @@ export const coverageSummary = path.join(tmpdir(), 'test-coverage-summary.json')
 export const badgeOutput = path.join(tmpdir(), 'test-badge.svg');
 
 export const createCoverageSummary = (
-  lines = 100,
-  statements = 100,
-  functions = 100,
-  branches = 100,
-  branchesTrue = 100
+  lines: string | number = 100,
+  statements: string | number = 100,
+  functions: string | number = 100,
+  branches: string | number = 100,
+  branchesTrue: string | number = 100
 ) => {
   fs.writeFileSync(
     coverageSummary,
