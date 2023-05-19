@@ -37,7 +37,7 @@ exports.default = (context) => __awaiter(void 0, void 0, void 0, function* () {
             message: 'What will be the repository URL (https) ?',
             type: 'text',
             name: 'repository',
-            initial: sourceRepository !== config_1.default.repository ? `${sourceRepository}.git` : '',
+            initial: sourceRepository !== config_1.default.repository ? sourceRepository : '',
             validate: requirePrompt
         },
         {

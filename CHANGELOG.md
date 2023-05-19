@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.3](https://github.com/klientjs/open-stack-cli/compare/1.4.2...1.4.3) (2023-05-19)
+
+
+### Bug Fixes
+
+* suggestion of repository url in configure command ([df030e1](https://github.com/klientjs/open-stack-cli/commit/df030e199d9890426f647c2fd0f687bd4822cef2))
+
 ## [1.4.2](https://github.com/klientjs/open-stack-cli/compare/1.4.1...1.4.2) (2023-05-18)
 
 
