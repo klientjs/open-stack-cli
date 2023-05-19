@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/klientjs/open-stack-cli/compare/1.5.0...1.5.1) (2023-05-19)
+
+
+### Features
+
+* update react-app test scripts for better console output ([d1ea460](https://github.com/klientjs/open-stack-cli/commit/d1ea46059f179862e1d7ec6fce8cf7bb066d83c1))
+
 # [1.5.0](https://github.com/klientjs/open-stack-cli/compare/1.4.3...1.5.0) (2023-05-19)
 
 
