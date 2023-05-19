@@ -7,10 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const supportedLibs = ['react-app'];
-export default ({ logger, inputs }) => __awaiter(void 0, void 0, void 0, function* () {
+export default ({ logger }) => __awaiter(void 0, void 0, void 0, function* () {
     logger.warn('CAUTION You are using an experimental feature');
-    if (!supportedLibs.includes(inputs.lib)) {
-        throw new Error(`Supported libs are : ${supportedLibs.join(', ')}`);
-    }
 });

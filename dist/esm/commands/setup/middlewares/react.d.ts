@@ -1,3 +1,3 @@
 import type { Context } from '../context';
-declare const _default: ({ logger }: Context) => Promise<void>;
+declare const _default: (context: Context) => Promise<void>;
 export default _default;

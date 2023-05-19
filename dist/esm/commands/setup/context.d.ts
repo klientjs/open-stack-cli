@@ -6,5 +6,6 @@ export interface Inputs extends BaseInputs {
 export interface Context extends BaseContext {
     inputs: Inputs;
 }
+export declare const supportedLibs: string[];
 declare const createContext: (inputs: Inputs) => Context;
 export default createContext;

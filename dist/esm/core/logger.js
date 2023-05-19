@@ -5,7 +5,7 @@ const ansiRegex = [
     '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))'
 ].join('|');
 export default class Logger {
-    constructor(verbosity = 1, colors = false) {
+    constructor(verbosity, colors) {
         this.verbosity = verbosity;
         this.colors = colors;
     }

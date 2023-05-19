@@ -2,7 +2,7 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import Logger from './core/logger';
 import execute from './core/command';
-import setup from './commands/setup';
+import setup, { supportedLibs } from './commands/setup';
 import create from './commands/create';
 import configure from './commands/configure';
 import update from './commands/update';
@@ -19,7 +19,7 @@ export default yargs(hideBin(process.argv))
     .option('version', { type: 'string', description: 'Current open-stack version', default: 'latest' }), (args) => execute(create, args))
     .command('configure [dir]', 'Configure open-stack project', (y) => y.positional('dir', { describe: 'Target directory', default: '.' }), (args) => execute(configure, args))
     .command('setup [lib] [dir]', 'Set up specific library in open-stack project (experimental)', (y) => y
-    .positional('lib', { describe: 'Library name (available: react-app)' })
+    .positional('lib', { describe: 'Library name', choices: supportedLibs })
     .positional('dir', { describe: 'Target directory', default: '.' }), (args) => execute(setup, args))
     .command('update [dir]', 'Update target dir to specific open-stack version', (y) => y
     .positional('dir', { describe: 'Directory', default: '.' })
@@ -44,8 +44,8 @@ export default yargs(hideBin(process.argv))
 }), (args) => execute(badge, args))
     .command({
     command: '*',
-    handler() {
-        new Logger().error('Invalid command name given, see usage with --help option.');
+    handler(args) {
+        new Logger(1, !args.raw).error('Invalid command name given, see usage with --help option.');
         process.exit(1);
     }
 })

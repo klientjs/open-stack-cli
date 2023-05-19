@@ -83,7 +83,10 @@ const updateTsConfig = () => {
 };
 export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     const { logger, inputs } = context;
-    const { dir } = inputs;
+    const { dir, lib } = inputs;
+    if (lib !== 'react-app') {
+        return;
+    }
     if (dir !== '.') {
         logger.step('Move to target dir');
         process.chdir(dir);
@@ -109,8 +112,8 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     fs.writeFileSync('.eslintrc', JSON.stringify(config, null, 2));
     logger.info('Update tsconfig.json', 2);
     updateTsConfig();
-    logger.info('Remove jest.config.ts', 2);
-    fs.rmSync('jest.config.ts');
+    logger.info('Remove jest.config.json', 2);
+    fs.rmSync('jest.config.json');
     logger.step('Install dependencies');
     execSync('npm install');
     logger.step('Create src and public folders');

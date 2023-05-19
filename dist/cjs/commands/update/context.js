@@ -17,6 +17,7 @@ const defaults = Object.assign(Object.assign({}, context_1.defaultInputs), { to:
         '.gitignore',
         '.commitlintrc',
         'jest.config.ts',
+        'jest.config.json',
         'tsconfig.json',
         'CODE_OF_CONDUCT.md',
         'CONTRIBUTING.md',

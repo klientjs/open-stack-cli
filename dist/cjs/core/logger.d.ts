@@ -1,7 +1,7 @@
 export default class Logger {
     private verbosity;
     private colors;
-    constructor(verbosity?: number, colors?: boolean);
+    constructor(verbosity: number, colors: boolean);
     write(x: string, minVerbosity?: number): void;
     step(x: string, mv?: number): void;
     error(x: string, mv?: number): void;

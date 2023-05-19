@@ -9,10 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const supportedLibs = ['react-app'];
-exports.default = ({ logger, inputs }) => __awaiter(void 0, void 0, void 0, function* () {
+exports.default = ({ logger }) => __awaiter(void 0, void 0, void 0, function* () {
     logger.warn('CAUTION You are using an experimental feature');
-    if (!supportedLibs.includes(inputs.lib)) {
-        throw new Error(`Supported libs are : ${supportedLibs.join(', ')}`);
-    }
 });

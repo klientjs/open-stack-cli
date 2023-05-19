@@ -21,7 +21,7 @@ exports.default = (0, yargs_1.default)((0, helpers_1.hideBin)(process.argv))
     .option('version', { type: 'string', description: 'Current open-stack version', default: 'latest' }), (args) => (0, command_1.default)(create_1.default, args))
     .command('configure [dir]', 'Configure open-stack project', (y) => y.positional('dir', { describe: 'Target directory', default: '.' }), (args) => (0, command_1.default)(configure_1.default, args))
     .command('setup [lib] [dir]', 'Set up specific library in open-stack project (experimental)', (y) => y
-    .positional('lib', { describe: 'Library name (available: react-app)' })
+    .positional('lib', { describe: 'Library name', choices: setup_1.supportedLibs })
     .positional('dir', { describe: 'Target directory', default: '.' }), (args) => (0, command_1.default)(setup_1.default, args))
     .command('update [dir]', 'Update target dir to specific open-stack version', (y) => y
     .positional('dir', { describe: 'Directory', default: '.' })
@@ -46,8 +46,8 @@ exports.default = (0, yargs_1.default)((0, helpers_1.hideBin)(process.argv))
 }), (args) => (0, command_1.default)(badge_1.default, args))
     .command({
     command: '*',
-    handler() {
-        new logger_1.default().error('Invalid command name given, see usage with --help option.');
+    handler(args) {
+        new logger_1.default(1, !args.raw).error('Invalid command name given, see usage with --help option.');
         process.exit(1);
     }
 })

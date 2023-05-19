@@ -1,5 +1,14 @@
 # Changelog
 
+# [1.5.0](https://github.com/klientjs/open-stack-cli/compare/1.4.3...1.5.0) (2023-05-19)
+
+
+### Features
+
+* add setup react components library ([b9fac6d](https://github.com/klientjs/open-stack-cli/commit/b9fac6d05cb0c8fed0889fa233cbf697019c08bd))
+* support open-stack update to 1.5.0 ([082c38b](https://github.com/klientjs/open-stack-cli/commit/082c38b8720496e0271ab54ce4787ff642c43be8))
+* use color for failure message if unknow command detected ([a9fda5f](https://github.com/klientjs/open-stack-cli/commit/a9fda5f9efa1c505ecafcaede1bfe3fcb204f561))
+
 ## [1.4.3](https://github.com/klientjs/open-stack-cli/compare/1.4.2...1.4.3) (2023-05-19)
 
 
