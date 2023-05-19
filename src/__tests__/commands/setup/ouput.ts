@@ -1,6 +1,6 @@
 import { rootDir } from './fixtures';
 
-export const outputSimple = `[warn] | CAUTION You are using an experimental feature
+export const outputReactApp = `[warn] | CAUTION You are using an experimental feature
 [step] | Move to target dir
 [step] | Update package.json
 [step] | Update files
@@ -11,7 +11,7 @@ export const outputSimple = `[warn] | CAUTION You are using an experimental feat
 [step] | Run pre-commit script
 [pass] | Successfully setup`;
 
-export const outputVerbose = `[warn] | CAUTION You are using an experimental feature
+export const outputReactAppVerbose = `[warn] | CAUTION You are using an experimental feature
 [step] | Move to target dir
 [info] | Moved to ${rootDir}
 [step] | Update package.json
@@ -23,7 +23,7 @@ export const outputVerbose = `[warn] | CAUTION You are using an experimental fea
 [info] | Update .gitignore
 [info] | Update .eslintrc
 [info] | Update tsconfig.json
-[info] | Remove jest.config.ts
+[info] | Remove jest.config.json
 [step] | Install dependencies
 [step] | Create src and public folders
 [step] | Update react files
@@ -31,5 +31,25 @@ export const outputVerbose = `[warn] | CAUTION You are using an experimental fea
 [step] | Run pre-commit script
 [pass] | Successfully setup`;
 
-export const outputInvalid = `[warn] | CAUTION You are using an experimental feature
-[fail] | Supported libs are : react-app`;
+export const outputReact = `[warn] | CAUTION You are using an experimental feature
+[step] | Move to target dir
+[step] | Update package.json
+[step] | Update files
+[step] | Install dependencies
+[step] | Run pre-commit script
+[pass] | Successfully setup`;
+
+export const outputReactVerbose = `[warn] | CAUTION You are using an experimental feature
+[step] | Move to target dir
+[info] | Moved to ${rootDir}
+[step] | Update package.json
+[info] | Setup dependencies
+[info] | Setup devDependencies
+[step] | Update files
+[info] | Create .babelrc
+[info] | Update .eslintrc
+[info] | Update jest.config.json
+[info] | Update tsconfig.json
+[step] | Install dependencies
+[step] | Run pre-commit script
+[pass] | Successfully setup`;

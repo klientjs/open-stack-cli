@@ -5,6 +5,8 @@ import { execSync } from 'child_process';
 
 export const rootDir = path.join(tmpdir(), 'open-stack-test-setup');
 
+export const removeRootDir = () => fs.rmSync(rootDir, { force: true, recursive: true });
+
 export const createNewProject = () => {
   const responses = {
     name: '@klient/example',

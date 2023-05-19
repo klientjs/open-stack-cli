@@ -4,7 +4,7 @@ import { hideBin } from 'yargs/helpers';
 import Logger from './core/logger';
 import execute from './core/command';
 
-import setup from './commands/setup';
+import setup, { supportedLibs } from './commands/setup';
 import create from './commands/create';
 import configure from './commands/configure';
 import update from './commands/update';
@@ -43,7 +43,7 @@ export default yargs(hideBin(process.argv))
     'Set up specific library in open-stack project (experimental)',
     (y) =>
       y
-        .positional('lib', { describe: 'Library name (available: react-app)' })
+        .positional('lib', { describe: 'Library name', choices: supportedLibs })
         .positional('dir', { describe: 'Target directory', default: '.' }),
     (args) => execute(setup, args)
   )

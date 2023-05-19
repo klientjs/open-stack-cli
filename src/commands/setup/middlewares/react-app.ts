@@ -86,12 +86,11 @@ const updateTsConfig = () => {
 
 export default async (context: Context) => {
   const { logger, inputs } = context;
-  const { dir } = inputs;
+  const { dir, lib } = inputs;
 
-  // TODO : Uncomment when another lib is supported
-  // if (input.lib !== 'react-app') {
-  //   return;
-  // }
+  if (lib !== 'react-app') {
+    return;
+  }
 
   if (dir !== '.') {
     logger.step('Move to target dir');
@@ -132,8 +131,8 @@ export default async (context: Context) => {
   logger.info('Update tsconfig.json', 2);
   updateTsConfig();
 
-  logger.info('Remove jest.config.ts', 2);
-  fs.rmSync('jest.config.ts');
+  logger.info('Remove jest.config.json', 2);
+  fs.rmSync('jest.config.json');
 
   logger.step('Install dependencies');
 

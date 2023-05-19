@@ -80,6 +80,7 @@ This command is useful to setup an external library in open-stack project.
 
 For now, you can you following libraries : 
 
+`react` : Setup your project for exporting React components (for react additionnal libraries only)
 `react-app` : Setup your project as create-react-app (for web application only)
 
 **Caution : This should be used just after create command (in fresh blank project) with no untracked files present** 

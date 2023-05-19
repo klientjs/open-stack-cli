@@ -7,7 +7,7 @@ const ansiRegex = [
 ].join('|');
 
 export default class Logger {
-  constructor(private verbosity = 1, private colors = false) {}
+  constructor(private verbosity: number, private colors: boolean) {}
 
   write(x: string, minVerbosity = 1) {
     if (this.verbosity > 0 && this.verbosity >= minVerbosity) {
