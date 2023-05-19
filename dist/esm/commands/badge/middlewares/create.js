@@ -31,9 +31,14 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     const coverageMembers = Object.keys(coverageData.total).filter((n) => n !== 'branchesTrue');
     coverageMembers.forEach((n) => logger.info(`- ${n}: ${coverageData.total[n].pct}%`, 2));
     let coverageValue = coverageData.total.statements.pct;
-    if (!incomplete) {
-        const coverageAmount = coverageMembers.map((n) => coverageData.total[n].pct).reduce((a, b) => a + b);
-        coverageValue = Math.round((coverageAmount / coverageMembers.length) * 100) / 100;
+    if (coverageValue !== 'Unknown') {
+        if (!incomplete) {
+            const coverageAmount = coverageMembers.map((n) => coverageData.total[n].pct).reduce((a, b) => a + b);
+            coverageValue = Math.round((coverageAmount / coverageMembers.length) * 100) / 100;
+        }
+    }
+    else {
+        coverageValue = 0;
     }
     logger.info('-----------------------', 2);
     logger.info(`TOTAL: ${coverageValue}%`, 2);

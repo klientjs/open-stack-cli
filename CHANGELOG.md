@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/klientjs/open-stack-cli/compare/1.5.1...1.5.2) (2023-05-19)
+
+
+### Bug Fixes
+
+* coverage badge value NaN if project has no tests ([ba4c5e8](https://github.com/klientjs/open-stack-cli/commit/ba4c5e82b3a2da64a5acf0d44a9724e7759a0380))
+
 ## [1.5.1](https://github.com/klientjs/open-stack-cli/compare/1.5.0...1.5.1) (2023-05-19)
 
 
