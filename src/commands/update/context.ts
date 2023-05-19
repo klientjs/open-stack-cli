@@ -66,6 +66,7 @@ const defaults: Inputs = {
     '.gitignore',
     '.commitlintrc',
     'jest.config.ts',
+    'jest.config.json',
     'tsconfig.json',
     'CODE_OF_CONDUCT.md',
     'CONTRIBUTING.md',
