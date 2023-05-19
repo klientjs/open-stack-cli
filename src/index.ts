@@ -88,8 +88,8 @@ export default yargs(hideBin(process.argv))
   // <--- UNKNOW --->
   .command({
     command: '*',
-    handler() {
-      new Logger().error('Invalid command name given, see usage with --help option.');
+    handler(args: { raw: boolean }) {
+      new Logger(1, !args.raw).error('Invalid command name given, see usage with --help option.');
       process.exit(1);
     }
   })
