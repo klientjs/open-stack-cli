@@ -31,9 +31,11 @@ const pkg = {
         'react-scripts': reactScriptVersion
     },
     scripts: {
+        start: 'react-scripts start',
+        build: 'rm -rf dist/* && BUILD_PATH=dist react-scripts build',
         test: 'react-scripts test --coverage --coverageReporters json-summary lcov text text-summary --watchAll=false --passWithNoTests',
-        dist: 'rm -rf dist/* && BUILD_PATH=dist react-scripts build',
-        start: 'react-scripts start'
+        eject: 'react-scripts eject',
+        dist: 'npm run build'
     },
     browserslist: {
         'production.0': '>0.2%',
@@ -139,5 +141,6 @@ exports.default = (context) => __awaiter(void 0, void 0, void 0, function* () {
     fs.rmSync(reactDir, { recursive: true });
     logger.step('Run pre-commit script');
     (0, child_process_1.execSync)('npm run pre-commit');
+    (0, child_process_1.execSync)('npm pkg set open-stack.setup=react-app');
     logger.success('Successfully setup');
 });

@@ -83,5 +83,6 @@ export default (context) => __awaiter(void 0, void 0, void 0, function* () {
     logger.step('Run pre-commit script');
     execSync('npm run pre-commit');
     execSync('npm run prettier:fix -- jest.config.json');
+    execSync('npm pkg set open-stack.setup=react');
     logger.success('Successfully setup');
 });

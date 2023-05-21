@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.3](https://github.com/klientjs/open-stack-cli/compare/1.5.2...1.5.3) (2023-05-21)
+
+
+### Features
+
+* Add build and eject scripts in react-app setup ([a8c06f5](https://github.com/klientjs/open-stack-cli/commit/a8c06f5985407f5e4d723e785a5d01aa4a7e31d2))
+* keep initialized setup type in project open-stack config ([0ed75c8](https://github.com/klientjs/open-stack-cli/commit/0ed75c88609c9cccc5a05dc39f5df0fa9e32aa9b))
+
 ## [1.5.2](https://github.com/klientjs/open-stack-cli/compare/1.5.1...1.5.2) (2023-05-19)
 
 
