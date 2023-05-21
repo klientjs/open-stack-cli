@@ -176,5 +176,7 @@ export default async (context: Context) => {
   logger.step('Run pre-commit script');
   execSync('npm run pre-commit');
 
+  execSync('npm pkg set open-stack.setup=react-app');
+
   logger.success('Successfully setup');
 };

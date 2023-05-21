@@ -107,5 +107,7 @@ export default async (context: Context) => {
   execSync('npm run pre-commit');
   execSync('npm run prettier:fix -- jest.config.json');
 
+  execSync('npm pkg set open-stack.setup=react');
+
   logger.success('Successfully setup');
 };
