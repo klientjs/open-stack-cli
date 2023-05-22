@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/klientjs/open-stack-cli/compare/1.5.3...1.5.4) (2023-05-22)
+
+
+### Features
+
+* update react-app setup for open-stack v1.6.0 ([ccd4b62](https://github.com/klientjs/open-stack-cli/commit/ccd4b62a9fed87977cd43020ab04c8b035e55447))
+
 ## [1.5.3](https://github.com/klientjs/open-stack-cli/compare/1.5.2...1.5.3) (2023-05-21)
 
 
