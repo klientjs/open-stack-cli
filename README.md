@@ -20,6 +20,13 @@
 
 This package contains a CLI able to make actions on project based on the Klient [open-stack](https://github.com/klientjs/open-stack) template, with useful commands provided.
 
+You should respect following steps to initialize a new project based on open-stack template :
+
+1) Duplicate open-stack repository (from github, or clone open-stack and reset git history). You can also use the "create" command !
+2) Initialize your project with "npm run configure" (the "create" command lunch it by default)
+3) Commit the changes related to project configuration
+4) Optionally, you can install and configure an external library with "setup" command (such as React)
+
 ## Installation
 
 ```bash
@@ -68,7 +75,7 @@ $ git push                  # Push project !
 
 ### Configure
 
-This command is useful to configure a new project based on open-stack template. It will remove content related to open-stack repository and configure the project files for the new package. This command should be run after git clone open-stack and before npm install.
+This command must be lunched after clone to initialize your project. It will remove content related to open-stack repository and configure the project files for the new package. This command should be run after FIRST npm install.
 
 ```bash
 $ npx open-stack configure
@@ -80,10 +87,11 @@ This command is useful to setup an external library in open-stack project.
 
 For now, you can you following libraries : 
 
-`react` : Setup your project for exporting React components (for react additionnal libraries only)
-`react-app` : Setup your project as create-react-app (for web application only)
+`react` : Setup your project for exporting React components (for React components libraries only)
 
-**Caution : This should be used just after create command (in fresh blank project) with no untracked files present** 
+`react-app` : Setup your project as create-react-app does (for web application only)
+
+**Caution : This should be used just after "configure" command (in fresh blank project) with no untracked files present** 
 
 ```bash
 $ npx open-stack create ./example
