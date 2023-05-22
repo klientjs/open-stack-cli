@@ -48,7 +48,9 @@ const removablePkgKeys = [
   'module',
   'files',
   'repository',
-  'keywords'
+  'keywords',
+  'scripts.dist:cjs',
+  'scripts.dist:esm'
 ];
 
 const eslintConfigExtends = [
